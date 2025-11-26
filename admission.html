@@ -3,12 +3,958 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admission</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>VIP Admission - Government College of Technology Bhakkar</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="css/bootstrap-icons-1.13.1/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="css/admission.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        :root {
+            --color-deep-red: #B71C1C;
+            --color-gold: #D4AF37;
+            --color-white: #FFFFFF;
+            --color-dark: #1A1A1A;
+            --color-gray-light: #F5F5F5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .small{
+            color: white;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--color-dark);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            height: 700px;
+            background: url('img/colge.jpeg') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.7));
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+        }
+        
+        .vip-ribbon {
+            position: absolute;
+            top: 30px;
+            right: 0;
+            background: linear-gradient(to right, var(--color-gold), #F4D03F);
+            color: var(--color-deep-red);
+            padding: 15px 40px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 3;
+        }
+        
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .btn-vip {
+            background: var(--color-deep-red);
+            color: white;
+            padding: 15px 40px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+            margin: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn-vip:hover {
+            background: #8B0000;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(183, 28, 28, 0.4);
+            color: white;
+        }
+        
+        .btn-gold {
+            background: var(--color-gold);
+            color: var(--color-deep-red);
+            padding: 15px 40px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+            margin: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn-gold:hover {
+            background: #C19B2C;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+            color: var(--color-deep-red);
+        }
+        
+        /* Section Headers */
+        .section-title {
+            font-size: 3rem;
+            color: var(--color-deep-red);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .section-divider {
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, var(--color-gold), #F4D03F);
+            margin: 0 auto 30px;
+        }
+        
+        /* Program Cards */
+        .program-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border: 1px solid #f0f0f0;
+            height: 100%;
+        }
+        
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        
+        .program-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2.5rem;
+            color: white;
+        }
+        
+        .program-card h3 {
+            color: var(--color-deep-red);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .program-card .learn-more {
+            color: var(--color-gold);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .program-card .learn-more:hover {
+            color: #C19B2C;
+            padding-left: 10px;
+        }
+        
+        /* Short Courses */
+        .course-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            height: 100%;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        
+        .course-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            position: relative;
+        }
+        
+        .course-duration {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--color-gold);
+            color: var(--color-deep-red);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .course-body {
+            padding: 25px;
+        }
+        
+        .course-body h3 {
+            color: var(--color-deep-red);
+            margin-bottom: 15px;
+        }
+        
+        /* VIP Features Section */
+        .vip-features-section {
+            background: linear-gradient(135deg, var(--color-deep-red), #8B0000);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .vip-features-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+            filter: blur(100px);
+        }
+        
+        .vip-features-section::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+            filter: blur(100px);
+        }
+        
+        .feature-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.3s;
+            height: 100%;
+        }
+        
+        .feature-card:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--color-gold), #F4D03F);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--color-deep-red);
+            margin-bottom: 25px;
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: rotate(6deg);
+        }
+        
+        /* Admission Steps */
+        .step-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border: 1px solid #f0f0f0;
+            height: 100%;
+            text-align: center;
+        }
+        
+        .step-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--color-gold), #F4D03F);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--color-deep-red);
+            font-weight: 700;
+            margin: 0 auto 20px;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
+            position: relative;
+        }
+        
+        .step-number::before {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-gold), #F4D03F);
+            opacity: 0.3;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.1; }
+        }
+        
+        .step-icon {
+            background: rgba(183, 28, 28, 0.1);
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.5rem;
+            color: var(--color-deep-red);
+        }
+        
+        /* Testimonials */
+        .testimonial-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border: 1px solid #f0f0f0;
+            height: 100%;
+            position: relative;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        
+        .testimonial-card::before {
+            content: '\201C';
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 6rem;
+            color: rgba(212, 175, 55, 0.1);
+            font-family: Georgia, serif;
+        }
+        
+        .testimonial-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--color-gold);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #1A1A1A, #2D2D2D);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        footer h5 {
+            color: white;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+        
+        footer a {
+            color: #9CA3AF;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        footer a:hover {
+            color: var(--color-gold);
+            padding-left: 10px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            transition: all 0.3s;
+            color: #9CA3AF;
+        }
+        
+        .social-icon:hover {
+            background: var(--color-gold);
+            color: var(--color-deep-red);
+            transform: translateY(-3px);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .vip-ribbon {
+                font-size: 0.8rem;
+                padding: 10px 20px;
+                right: 0;
+            }
+        }
+        
+        /* Scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Hide scrollbar for carousel */
+        .carousel-inner::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-    <!-- Page assign to Rafy and Tamoor -->
+    <header id="home">
+
+            <nav class="navbar navbar-expand-sm fixed-top shadow-lg">
+        <div class="container-fluid">
+
+            <a class="navbar-brand" href=""><img class="logo" src="img/redlogo.png" alt=""></a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sideMenu">
+                ☰
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav fs-6 ">
+                    <li class="nav-item"><a class="nav-link" id="#home" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link"id="#Tech" href="#">Technologies</a></li>
+                    <li class="nav-item"><a class="nav-link" id="#Admission" href="admission.html">Admission</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Events</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Facilities</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                </ul>
+            </div>
+
+            <div class="d-flex align-items-center ms-3">
+                <a href="#" class="text-light me-3"><i class="bi bi-search"></i></a>
+                <button class="btn btn-danger">Apply Now</button>
+            </div>
+
+
+        </div>
+    </nav>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="vip-ribbon">
+            ✨ VIP Admission
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">Admission Open at <span style="color: var(--color-gold);">GCT BHAKKAR</span></h1>
+            <p class="hero-subtitle">Fall 2026 — Technical diplomas & skilled short courses</p>
+            <div class="mt-4">
+                <button class="btn btn-vip">Apply for VIP Admission</button>
+                <button class="btn btn-gold">
+                    <i class="bi bi-download"></i> Download Prospectus
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section class="py-5 bg-white" id="programs">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Technical Diploma Programs</h2>
+                <div class="section-divider"></div>
+                <p class="text-muted">Choose from our industry-recognized technical programs designed to launch your career</p>
+            </div>
+            
+            <div class="row g-4">
+                <!-- CIT -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="program-card">
+                        <div class="program-icon" style="background: linear-gradient(135deg, #3B82F6, #2563EB);">
+                            <i class="bi bi-laptop"></i>
+                        </div>
+                        <h3>CIT</h3>
+                        <p class="text-muted small mb-2">Computer Information Technology</p>
+                        <p class="mb-3">Master modern computing, programming, and IT infrastructure for the digital age</p>
+                        <a href="#" class="learn-more">Learn More <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- CV -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="program-card">
+                        <div class="program-icon" style="background: linear-gradient(135deg, #10B981, #059669);">
+                            <i class="bi bi-building"></i>
+                        </div>
+                        <h3>CV</h3>
+                        <p class="text-muted small mb-2">Civil Technology</p>
+                        <p class="mb-3">Build your future in construction, surveying, and infrastructure development</p>
+                        <a href="#" class="learn-more">Learn More <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- MT -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="program-card">
+                        <div class="program-icon" style="background: linear-gradient(135deg, #8B5CF6, #7C3AED);">
+                            <i class="bi bi-gear"></i>
+                        </div>
+                        <h3>MT</h3>
+                        <p class="text-muted small mb-2">Mechanical Technology</p>
+                        <p class="mb-3">Explore manufacturing, mechanics, and industrial engineering systems</p>
+                        <a href="#" class="learn-more">Learn More <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- ELT -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="program-card">
+                        <div class="program-icon" style="background: linear-gradient(135deg, #F59E0B, #D97706);">
+                            <i class="bi bi-lightning-charge"></i>
+                        </div>
+                        <h3>ELT</h3>
+                        <p class="text-muted small mb-2">Electrical Technology</p>
+                        <p class="mb-3">Power your career with electrical systems, circuits, and energy solutions</p>
+                        <a href="#" class="learn-more">Learn More <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- ET -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="program-card">
+                        <div class="program-icon" style="background: linear-gradient(135deg, #EF4444, #DC2626);">
+                            <i class="bi bi-cpu"></i>
+                        </div>
+                        <h3>ET</h3>
+                        <p class="text-muted small mb-2">Electronics Technology</p>
+                        <p class="mb-3">Innovate with electronics, telecommunications, and smart device systems</p>
+                        <a href="#" class="learn-more">Learn More <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Short Courses Section -->
+    <section class="py-5" style="background: linear-gradient(to bottom, #F9FAFB, white);" id="courses">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Professional Short Courses</h2>
+                <div class="section-divider"></div>
+                <p class="text-muted">Fast-track your skills with our intensive 3-month professional training programs</p>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Painter -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="course-card">
+                        <div style="position: relative;">
+                            <img src="https://images.unsplash.com/photo-1596495868845-63031cb496da?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800" alt="Painter Course" class="course-img">
+                            <span class="course-duration">3 months</span>
+                        </div>
+                        <div class="course-body">
+                            <h3>Professional Painter</h3>
+                            <p class="text-muted small mb-4">Learn professional painting techniques, color theory, and surface preparation for residential and commercial projects</p>
+                            <button class="btn btn-vip w-100">
+                                Enroll <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Plumber -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="course-card">
+                        <div style="position: relative;">
+                            <img src="https://images.unsplash.com/photo-1690356107685-3725367f6f3f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800" alt="Plumber Course" class="course-img">
+                            <span class="course-duration">3 months</span>
+                        </div>
+                        <div class="course-body">
+                            <h3>Professional Plumber</h3>
+                            <p class="text-muted small mb-4">Master plumbing systems, pipe installation, repair techniques, and modern sanitation solutions</p>
+                            <button class="btn btn-vip w-100">
+                                Enroll <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Shuttering -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="course-card">
+                        <div style="position: relative;">
+                            <img src="https://images.unsplash.com/photo-1599043627490-6725d0a01067?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800" alt="Shuttering Course" class="course-img">
+                            <span class="course-duration">3 months</span>
+                        </div>
+                        <div class="course-body">
+                            <h3>Shuttering Carpenter</h3>
+                            <p class="text-muted small mb-4">Gain expertise in formwork, scaffolding, and construction carpentry for building projects</p>
+                            <button class="btn btn-vip w-100">
+                                Enroll <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIP Features Section -->
+    <section class="py-5 vip-features-section" id="vip-features">
+        <div class="container" style="position: relative; z-index: 1;">
+            <div class="text-center mb-5">
+                <div class="d-inline-flex align-items-center gap-2 px-4 py-2 mb-4" style="background: rgba(212,175,55,0.2); border-radius: 25px; backdrop-filter: blur(10px);">
+                    <i class="bi bi-gem" style="color: var(--color-gold);"></i>
+                    <span style="color: var(--color-gold); text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem;">VIP Benefits</span>
+                </div>
+                <h2 class="section-title text-white">Exclusive VIP Admission Privileges</h2>
+                <p class="text-white-50">Experience premium treatment and accelerated processing as a VIP applicant</p>
+            </div>
+            
+            <div class="row g-4 mb-4">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-gem"></i>
+                        </div>
+                        <h3>Priority Counseling</h3>
+                        <p class="text-white-50">Get exclusive one-on-one career guidance from our expert counselors</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-trophy"></i>
+                        </div>
+                        <h3>Scholarship Consideration</h3>
+                        <p class="text-white-50">VIP applicants receive priority review for merit-based scholarships</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-people"></i>
+                        </div>
+                        <h3>Limited Seats</h3>
+                        <p class="text-white-50">Only 50 VIP admission spots available - secure yours today</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <button class="btn btn-gold">Claim Your VIP Spot Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admission Steps Section -->
+    <section class="py-5 bg-white" id="steps">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Simple Admission Process</h2>
+                <div class="section-divider"></div>
+                <p class="text-muted">Your journey to success starts with these four easy steps</p>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Step 1 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <div class="step-icon">
+                            <i class="bi bi-file-text"></i>
+                        </div>
+                        <h4 style="color: var(--color-deep-red);">Apply</h4>
+                        <p class="text-muted small">Fill out the online VIP admission form with your personal and academic details</p>
+                    </div>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <div class="step-icon">
+                            <i class="bi bi-upload"></i>
+                        </div>
+                        <h4 style="color: var(--color-deep-red);">Documents</h4>
+                        <p class="text-muted small">Upload required documents including transcripts, ID, and certificates</p>
+                    </div>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <div class="step-icon">
+                            <i class="bi bi-chat-square-text"></i>
+                        </div>
+                        <h4 style="color: var(--color-deep-red);">Interview</h4>
+                        <p class="text-muted small">Attend a priority interview session with our admission committee</p>
+                    </div>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <div class="step-icon">
+                            <i class="bi bi-mortarboard"></i>
+                        </div>
+                        <h4 style="color: var(--color-deep-red);">Enrollment</h4>
+                        <p class="text-muted small">Complete enrollment formalities and begin your journey at GCT Bhakkar</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-5" style="background: linear-gradient(to bottom, #F9FAFB, white);" id="testimonials">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Success Stories</h2>
+                <div class="section-divider"></div>
+                <p class="text-muted">Hear from our alumni who have achieved remarkable success after graduating from GCT Bhakkar</p>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Testimonial 1 -->
+                <div class="col-md-6">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-4">
+                            <img src="img/p2.jpeg" alt="Zain Tahir" class="testimonial-img me-3">
+                            <div>
+                                <h5 style="color: var(--color-deep-red); margin-bottom: 5px;">Zain Tahir</h5>
+                                <p class="text-muted small mb-0">Computer Information Technology - Class of 2024</p>
+                            </div>
+                        </div>
+                        <p class="text-muted fst-italic">"GCT Bhakkar transformed my career. The hands-on training and expert faculty prepared me perfectly for the tech industry. Now working as a Software Developer at a leading firm!"</p>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="col-md-6">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-4">
+                            <img src="img/p1.jpeg" alt="Tamoor Shahzad" class="testimonial-img me-3">
+                            <div>
+                                <h5 style="color: var(--color-deep-red); margin-bottom: 5px;">Tamoor Shazad</h5>
+                                <p class="text-muted small mb-0">Civil Technology - Class of 2023</p>
+                            </div>
+                        </div>
+                        <p class="text-muted fst-italic">"The VIP admission program gave me priority access to scholarships and counseling. The practical experience I gained here made me stand out in job interviews. Highly recommended!"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="row g-4 mb-5">
+                <!-- About -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="d-flex align-items-center justify-content-center me-2" style="width: 45px; height: 45px; background: linear-gradient(135deg, var(--color-gold), #F4D03F); border-radius: 10px;">
+                            <span style="color: var(--color-deep-red); font-weight: 700;">GCT</span>
+                        </div>
+                        <h5 class="mb-0">GCT Bhakkar</h5>
+                    </div>
+                    <p class=" mb-3">Leading technical education institution in Bhakkar, providing quality diploma programs and short courses since establishment.</p>
+                    <span class="badge px-3 py-2" style="background: rgba(212,175,55,0.2); color: var(--color-gold);">VIP Admissions Open</span>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="col-md-6 col-lg-3">
+                    <h5>Quick Links</h5>
+                    <a href="#">About Us</a>
+                    <a href="#programs">Programs</a>
+                    <a href="#courses">Admissions</a>
+                    <a href="#">Faculty</a>
+                    <a href="#">Campus Life</a>
+                    <a href="#">Career Services</a>
+                </div>
+                
+                <!-- Programs -->
+                <div class="col-md-6 col-lg-3">
+                    <h5>Programs</h5>
+                    <a href="#">Computer Information Technology</a>
+                    <a href="#">Civil Technology</a>
+                    <a href="#">Mechanical Technology</a>
+                    <a href="#">Electrical Technology</a>
+                    <a href="#">Electronics Technology</a>
+                </div>
+                
+                <!-- Contact -->
+                <div class="col-md-6 col-lg-3">
+                    <h5>Contact Us</h5>
+                    <div class="mb-3">
+                        <i class="bi bi-geo-alt" style="color: var(--color-gold);"></i>
+                        <span class=" small ms-2">Government College of Technology<br>Near DHQ Hospital Bhakkar, Punjab, Pakistan</span>
+                    </div>
+                    <div class="mb-3">
+                        <i class="bi bi-telephone" style="color: var(--color-gold);"></i>
+                        <a href="tel:+92453000000" class="d-inline ms-2">+92 (453) 000-000</a>
+                    </div>
+                    <div class="mb-4">
+                        <i class="bi bi-envelope" style="color: var(--color-gold);"></i>
+                        <a href="mailto:info@gctbhakkar.edu.pk" class="d-inline ms-2">info@gctbhakkar786.com</a>
+                    </div>
+                    
+                    <h6 class="mb-3">Follow Us</h6>
+                    <div>
+                        <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bottom Footer -->
+            <div class="border-top pt-4" style="border-color: rgba(255,255,255,0.1) !important;">
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        <p class=" mb-0">© 2026 Government College of Technology Bhakkar. All rights reserved.</p>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <a href="#" class="text-muted small me-3" style="text-decoration: none;">Privacy Policy</a>
+                        <a href="#" class="text-muted small" style="text-decoration: none;">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Button click handlers
+        document.querySelectorAll('.btn-vip, .btn-gold').forEach(button => {
+            button.addEventListener('click', function() {
+                if (this.textContent.includes('Apply') || this.textContent.includes('Claim')) {
+                    alert('Thank you for your interest! The VIP admission form will open soon.');
+                } else if (this.textContent.includes('Download')) {
+                    alert('Prospectus download will start shortly.');
+                } else if (this.textContent.includes('Enroll')) {
+                    alert('Enrollment form for short courses will open soon.');
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards
+        document.querySelectorAll('.program-card, .course-card, .feature-card, .step-card, .testimonial-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.6s ease-out';
+            observer.observe(card);
+        });
+    </script>
+
 </body>
 </html>
